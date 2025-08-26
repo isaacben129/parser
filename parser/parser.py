@@ -78,11 +78,16 @@ def np_chunk(tree):
     noun phrases as subtrees.
     """
     np_list = []
-    for s in tree.subtrees():
-        if s.label() == 'NP':
-            subtree = [s2 for s2 in s.subtrees() if 'NP' != s2.label()]
+    subtree = [s2 for s2 in tree.subtrees() if 'NP' == s2.label()]
+    for s in subtree:
+        contains_NP = False
+        for child in s.subtrees():
+            if child == s:
+                continue
+            elif child.label() == 'NP':
+                contains_NP = True
+        if contains_NP == False:
             np_list.append(s)
-
 
     # print(np_list)
     return np_list
