@@ -81,6 +81,8 @@ def np_chunk(tree):
     for s in tree.subtrees():
         if s.label() == 'NP':
             subtree = [s2 for s2 in s.subtrees() if 'NP' != s2.label()]
+            np_list.append(s)
+
 
     # print(np_list)
     return np_list
